@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Indie+Flower&family=Lobster&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Fascinate&family=Indie+Flower&family=Lobster&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a6b2fb6f3f.js" crossorigin="anonymous"></script>
-    <script src="../javascript/page2.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -32,42 +31,68 @@
         </nav>
     </header>
     <section class="section1">
-        <form class="registration" action="./results.html" method="post">
+        <form class="registrationform" action="" method="post" id="registration">
             <i class="fa-brands fa-gratipay"></i>
-            <div class="first-name">
-                <label class="label">Enter Your FirstName</label>
-                <input type="text" placeholder="FirstName" name="name" required>
+            <div class="username">
+                <label class="label" for="username">Enter Your Username</label>
+                <input type="text" id="username" placeholder="Username" name="username" required>
+                <div class="error-text" id="error-username"></div>
             </div>
-            <div class="last-name">
-                <label class="label">Enter Your LastName</label>
-                <input type="text" placeholder="LastName" name="lastname" required>
+            <div id="form">
+                <label class="label" for="Email">Enter Your Email</label>
+                <input type="email" placeholder="Email" name="email" id="email"  onkeydown="validationEmail()" required>
+                <span id="text"></span>
              </div>
              <div class="phone-number">
                 <label class="label">Enter Your Phone Number</label>
                 <input type="tel" placeholder="Phone Number" name="mobile-phone" maxlength="9" required>
+                <div class="error-text" id="error-number"></div>
             </div>
             <div class="address">
                 <label class="label">Enter Your Address</label>
-                <input type="address" placeholder="Address" name="home-address" required>
+                <input type="text" placeholder="Address" name="home-address" required>
             </div>
-            <div class="email">
-                <label class="label">Enter Your Email Address</label>
-                <input type="email" placeholder="Email Address" name="email" required>
-            </div>
+          
             <div class="password">
-                <label class="label">Enter Your Password</label>
-                <input type="password" placeholder="Password" minlength="8" requred>
+                <label class="label" for="passw">Enter Your Password</label>
+                <input type="password" id="passw" name="password" placeholder="Password" minlength="8" requred>
+            </div>
+            <div class="password2">
+                <label class="label" for="passw2">Repeat password</label>
+                <input type="password" id="passw2" name="password2" placeholder="Repeat password" required>
+                <div class="error-text" id="error-password"></div>
+            </div>
+            <div class="gender">
+                <input type="radio" name="gender">
+                <label for="" class="label">Male</label>
+                <input type="radio" name="gender">
+                <label for="" class="label">Female</label>
+                <input type="radio" name="gender">
+                <label for="" class="label">Other</label>
+                <div class="error-text" id="error-gender"></div>
             </div>
             <div class="terms">
                  <label class="label" for="termsandconditions">I agree to the Terms & Conditions</label>
-                 <input type="checkbox" name="termsandconditions" required>
+                 <input type="checkbox" name="termsandconditions" id="agree" required>
+                 <div class="error-text" id="error-agree"></div>
             </div>
-            <input onclick="clickHandler()" type="button" value="register" class="register" id="registrationdone">
-            <!-- <button type="submit"></button> -->
+            <!-- <input onclick="clickHandler()" type="button" value="register" class="register" id="registrationdone"> -->
+            <button type="submit" class="register" >register</button>
         </form>
     </section>    
     <footer>
+        <!-- <p>Follow us</p> -->
+        <div class="slider-wrapper">
+            <button class="arrow arrow-left" id="arrow-left"> < </button>
+            <!-- <button class="arrow arrow-right" id="arrow-right"> > </button> -->
+            <div class="slider-content" id="slider-content">
+     
+            </div>
+            <button class="arrow arrow-right" id="arrow-right"> > </button>
+            <div class="dotsParent"></div>
+                
         <p class="copyright">© Developed By Sofia - All Rights Reserved</p>
     </footer>
+    <script src="../javascript/page2.js"></script>
 </body>
 </html>

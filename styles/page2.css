@@ -46,7 +46,7 @@ a, .a:hover, .a:active, .a:focus {
     text-decoration: none;
     border-radius: 20px;
 }
-.registration {
+.registrationform {
     padding-top:20px;
     display:-webkit-box;
     display:-ms-flexbox;
@@ -62,7 +62,7 @@ a, .a:hover, .a:active, .a:focus {
         -ms-flex-align: center;
             align-items: center;
     width:500px;
-    height:500px;
+    height:600px;
     background-color:#F7EBEC;
     gap:50px;
     margin-top:90px;
@@ -95,7 +95,7 @@ a, .a:hover, .a:active, .a:focus {
     width:140px;
     height:40px;
 }
-.first-name {
+.username {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -112,10 +112,88 @@ footer {
     display:flex;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
-            justify-content: end;
+            justify-content:space-between;
 }
 .copyright {
     font-family:acme;
+    top:20px;
+    left:100px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-inline-start: 644px;
+}
+
+.slider-wrapper {
+    position: relative;
+   
+    display: flex;
+    flex-direction: row;
+}
+.slide {
+    width:100%;
+}
+
+.slide img {
+    width:150px;
+    height: 150px;
+    object-fit:cover;
+}
+
+.arrow {
+    margin:40px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color:#E0BBE4;
+    color:aliceblue;
+    border:none;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+.slider-content {
+    position: relative;
+}
+
+.arrow-left {
+    left:30px;
+
+}
+.arrow-right {
+    right:30px;
+}
+.slider-title {
+    position: absolute;
+    right:20px;
+    font-size: 10px;;
+    color:#957DAD;
+    font-family: acme;
+}
+
+
+.dot {
+    width: 5px;
+    height: 5px;
+    background-color:aliceblue;
+    border-radius: 50%;
+    margin: 8px;
+    cursor: pointer;
+}
+.dot.active {
+    background-color: #fff;
+    border: 2px solid #D291BC;
+}
+.dotsParent {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    margin:-50px;
 }
 @media only screen and (min-width : 320px) and (max-width : 480px) {
     .main-header {
