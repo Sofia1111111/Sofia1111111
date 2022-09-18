@@ -69,8 +69,8 @@ a, .a:hover, .a:active, .a:focus {
     border-radius: 10px;
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
-    text-align: 
-}
+     
+} 
 .section1 {
     display: -webkit-box;
     display: -ms-flexbox;
