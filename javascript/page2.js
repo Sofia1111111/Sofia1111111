@@ -11,14 +11,14 @@ formElement.addEventListener ("submit", function(event){
     let errors = {};
     let form = event.target;
 
-    //username ვალიდაცია
+    
     let username = document.querySelector('[name="username"]').value;
-    //ვალიდაციის შემოწმება:
-    if (username.length > 5 && username == "") {//თუ input-ის სიგრძე არის 5ზე ნაკლები ან ცარიელია, error-ს ობიექტში ჩავარდება key, რომელსაც იმ სახელს ვარქმევთ, რა name ატრიბუტის მნიშვნელობაც გვექნება გაწერილი html-ში (must). value კი არის ტექსტი რაც გვინდა
+    
+    if (username.length > 5 && username == "") {
         errors.username = "Username value must be more than 5 character and can not be empty";
     }
 
-    //password
+    
     let password = document.getElementById('passw').value;
     let password2 = document.getElementById('passw2').value;
 
@@ -28,13 +28,13 @@ formElement.addEventListener ("submit", function(event){
 
     }
 
-    //checkbox 
+   
     let agree = document.getElementById('agree').checked;
     if (!agree) { //თუ არ არის true 
         errors.agree = 'You must agree to our conditions';
     }
 
-    //radio 
+    
     let gender = false;
 
     form.querySelectorAll('[name="gender"]').forEach(item => {
@@ -49,32 +49,27 @@ formElement.addEventListener ("submit", function(event){
     console.log(errors);
 
 
-    form.querySelectorAll('.error-text').forEach((element) =>{//ეს გვჭირდება იმისთვის, რომ ერთხელ რომ ამოაგდებს ერორს თუ შემდეგ სწორად დავწერეთ error ტექსტი გაქრეს
-        element.innerHTML = '';//ყოველ ჯერზე გაასუფთავებს div-ს
+    form.querySelectorAll('.error-text').forEach((element) =>{
+        element.innerHTML = '';
     })
 
-    for (let item in errors) {//errors-ს ობიექტიდან გადავუაროთ თითოეულ key-ს. შესაბამისად კონსოლში თუ აითემს დავლოგავთ, გამოჩნდება, username, agree, gender, password2 
+    for (let item in errors) {
         console.log(item);
 
-        let textError = document.getElementById('error_' + item);//id-ის საშუალებით ვიღებთ იმ div-ს რომელშიც უნდა ჩავაგდოთ error ტექსტი. თუ არანაირი შეცდომა არ მოხდა, ეს TextError იქნება ცარიელი, for ციკლი საერთოდ არ შესრულდება
+        let textError = document.getElementById('error_' + item);
 
-        if (textError) {//თუ textError არის true, მასში უნდა ჩავარდეს, errors ცვლადის key-ები ანუ item-ები
+        if (textError) {
             textError.textContent = errors[item];
         }
     }
 
-    if (Object.keys(errors).length == 0) {//ეს ნიშნავს რომ თუ errors.keys ცარიელია, დაასაბმითე ფორმა
+    if (Object.keys(errors).length == 0) {
         form.submit();
         alert('Registered succesfully')
     }
 
 });
-    // let errors = {
-    //     username: 'Username value must be more than 5 character and can not be empty';
-    //     gender: 'Select Your Gender';
-    //     agree: 'You must agree to our conditions';
-    //     password2: 'Passwords do not match';
-    // }
+    
 
 function validationEmail() {
     let form = document.getElementById('form');
@@ -113,7 +108,7 @@ let data = [
         id:1,
         imageUrl:'/assets/insta.png', 
         title: 'Instagram',
-        url:'https://instagram.com',//სად მინდა რომ გადამამისართოს
+        url:'https://instagram.com',
     },
     {
         id:2,
@@ -136,55 +131,50 @@ let data = [
 ];
 
 
-const arrowLeft = document.getElementById('arrow-left'); //ელემენტი შევინახეთ ცვლადში
+const arrowLeft = document.getElementById('arrow-left'); 
 const arrowRigth = document.getElementById('arrow-right');
 const sliderContent = document.getElementById('slider-content');
-const dotBurtuli = document.getElementsByClassName('dot');//dot ელემნტი შევინახოთ ცვლადში
+const dotBurtuli = document.getElementsByClassName('dot');
 
-let sliderIndex = 0; //სლაიდერინდექსი იქნება 0, რადგან მასივის პირველი ობიექტის ინდექსია 0
+let sliderIndex = 0; 
 
-function createAtag(item) { //item არის data მასივიდან დაბრუნდებული თითოეული ობიექტი 
-    const tag = document.createElement('a');//ვქმნით a ელემენტს
-    tag.setAttribute('href', item.url);//ვუმატებთ href ატრიბუტზე, რომ დაწოლა და ლინკზე გადასვლა იყოს შესაძლებელი 
-    tag.classList.add('slide');//მივანიჭეთ კლასის სახელი
+function createAtag(item) { 
+    const tag = document.createElement('a');
+    tag.setAttribute('href', item.url);
+    tag.classList.add('slide');
 
-    return tag; //დავაბრუნოთ ეს შექმნილი a tag თავისი href ატრიბუტით, მნიშვნელობით და ა.შ.
+    return tag; 
+
 }
-
-//იგივე პრინციპით ვქმნით image tag-ს
 function createImgtag(item) { 
     const tagImage = document.createElement('img');
     tagImage.setAttribute('src', item.imageUrl);
-    tagImage.setAttribute('alt', item.title);//alt ატრიბუტში იწერება ინფორმაცია, თუ სურათი არ გაიხსნა, ამ შემთხვევაში გადავცემთ title-ს
+    tagImage.setAttribute('alt', item.title);
     
    
-    return tagImage; //დავაბრუნოთ ეს tag
+    return tagImage; 
 }
 
 function createH2tag(item) { 
     const tagTitle = document.createElement('h2');
-    //ქვედა სამივე მეთოდი ერთი და იგივე შედეგს გვაძლევს
-    tagTitle.innerText = item.title; //h2-ში ჩავაგდოთ ის კონტენტი, რაც არის მითითებული title-ში
-    //tagTitle.textContent
-    //tagTitle.append
-    tagTitle.classList.add('slider-title');//მივანიჭოთ კლასი
+    tagTitle.innerText = item.title; 
+    tagTitle.classList.add('slider-title');
 
-    return tagTitle; //დავაბრუნოთ ეს tag
+    return tagTitle; 
 }
-//dot-ებისთვის ვქმნით ფუნქციას, რომლსაც გადაეცემა თითოელი ობიექტი პარამეტრად, გვინდა რომ რომელ დოტსაც დავაწვებით იმ სლაიდზე გადავიდეს
-function createDots(item){//შევქმენით ფუნქცია
-   const dotsParent = document.createElement('div');//შევქმენით ბურთულას მშობელი ელემენტი რომელიც შევინახეთ ცვლადში
-   dotsParent.classList.add('dotsParent');//მივანიჭეთ კლასი
 
-   //გადავუარეთ forEach-ის საშუალებით ყოველ ბურთულა ელემენტს
+function createDots(item){
+   const dotsParent = document.createElement('div');
+   dotsParent.classList.add('dotsParent');
+
    data.forEach (element =>{
     const dotChild = document.createElement('div');
     dotChild.classList.add('dot');
-    dotChild.setAttribute('data-id', element.id - 1 );//აქ რადგან id-ების თვლას ვიწყებთ 1-დან, ჩვენ კი გვჭირდება იდექსების გამოყენება ანუ 0-დან დაწყება, ვწერთ element.id - 1, რადგან მიწვდეს მასივში არსებულ პირველ ელემენტს რომლის ინდექსია 0
+    dotChild.setAttribute('data-id', element.id - 1 );
 
     dotChild.addEventListener('click', function(event){
-        let id = event.target.getAttribute('data-id');//გვაქვს 4 ბურთულა და რომელსაც დავაწვები ის გახდება event.target და ჩავარდება id ცვლადში
-        sliderIndex = id; //სლაიდერინდექსი უნდა გახდეს ეს id, რომ შესაბამის სლაიდზე გადავიდეს
+        let id = event.target.getAttribute('data-id');
+        sliderIndex = id; 
         setSlide();
     })
     dotsParent.appendChild(dotChild);
@@ -192,29 +182,29 @@ function createDots(item){//შევქმენით ფუნქცია
    return dotsParent;
 }
 function currentDotActive() {
-    dotBurtuli[sliderIndex].classList.add('active')//რა მნიშვნელობაც ექნება სლაიდერიდექსს ის შესაბამისი დოტი უნდა იყოს აქტიური, რომ აქტიურ ბურთულად მივანიჭოთ დამატებითი სტილები
+    dotBurtuli[sliderIndex].classList.add('active');
 }
 
 function setSlide() {
-    sliderContent.innerHTML = '';//ეს გვჭირდება რომ შემდეგ სლაიდზე გადასვლისას, ძველი ფოტო არ დატოვოს და წაიშალოს კონტენტი
-    const slideItem = createAtag(data[sliderIndex]);//შევქმენით ახალი ცვლადი, რომელშიც ვიძახებთ createAtag ფუნქციას, რომელსაც პარამეტრად გადავცემთ data მასივის პირველ ობიექტს, რომელიც შევინახეთ sliderIndex ცვლადში. createAtag ფუნქციის გამოძახება დაგვჭირდა იმიტომ, რომ მიხვდეს რომ ამ ცვლადში ვინახავთ createAtag ფუნქციიდან დაბრუნებულ პასუხს ანუ A tag-ს ამ შემთხვევაში
-    const h2Tag = createH2tag(data[sliderIndex]);//იგივე გავაკეთეთ h2 tag - სთვისაც
-    const imgTag = createImgtag(data[sliderIndex]);//იგივე ფოტოს თეგისთვის
-    const dots = createDots();//ვქმნით ცვლადს, რომელშიც ვაგდებთ ფუნქციას, რითაც შეიქმება, dot-ი
+    sliderContent.innerHTML = '';
+    const slideItem = createAtag(data[sliderIndex]);
+    const h2Tag = createH2tag(data[sliderIndex]);
+    const imgTag = createImgtag(data[sliderIndex]);
+    const dots = createDots();
 
-    slideItem.appendChild(imgTag);//a tag-ში ჩავაგდოთ img tag-ი
-    slideItem.appendChild(h2Tag);//ასევე h2-ც
-    sliderContent.appendChild(slideItem);//sliderContent-ში ჩავაგდოთ ჩვენი slideItem
-    sliderContent.appendChild(dots);//sliderContent-ში ჩავაგდოთ dots
+    slideItem.appendChild(imgTag);
+    slideItem.appendChild(h2Tag);
+    sliderContent.appendChild(slideItem);
+    sliderContent.appendChild(dots);
 
 
     currentDotActive();
     console.log(slideItem);
 }
-// ავტომატურად სამ წამში გადავიდეს მომდევნო სლაიდზე, ამიტომ arrowLeft და arrowRight გაგვაქვს ცალკე ფუნქციაში
+
 function arrowLeftClick () {
     if (sliderIndex == 0) {
-        sliderIndex = data.length - 1;//გვინდა რომ პირველი სლაიდზე უკან დაჭერის შემთხვევაში გადავიდეს ბოლო სლაიდზე
+        sliderIndex = data.length - 1;
         setSlide();
         return;
     }
@@ -224,35 +214,18 @@ function arrowLeftClick () {
 
 function arrowRightClick () {
     if (sliderIndex == data.length - 1){
-        sliderIndex = 0;//ბოლო სლაიდზე წინ დაჭერის შემთხვევაში გადავიდეს პირველ სლაიდზე, აქ გვჭირდება 1 ტოლობის ნიშანი რომელიც ნიშნავს უდრის, და არა == ტოლობა რომელიც ნიშნავს შედარებას
+        sliderIndex = 0;
         setSlide();
         return;
     }
     sliderIndex++;
     setSlide();
 }
-arrowLeft.addEventListener("click", arrowLeftClick); //შესაბამისად აქ ქლიქზე გადავცემთ arrowLeftClick-ს 
+arrowLeft.addEventListener("click", arrowLeftClick); 
 arrowRigth.addEventListener("click", arrowRightClick);
-setInterval ( () => {//ავტომატური გადასვლა
-    arrowRightClick();//გადავცემთ მარჯვნივ გადასვლას რომ ავტომატურად გადავიდეს მარჯვნივ
-}, 3000)//სამ წამში
+setInterval ( () => {
+    arrowRightClick();
+}, 3000)
 
-
-
-// arrowLeft.addEventListener('click', function(){//მარცხენა ღილაკზე კლიკის შემთხვევში სლაიდერ ინდექსი რომელიც თავდაპირველად იყო 0, უნდა დაიკლოს 1-ით
-//     if (sliderIndex == 0) {//თუ პირველ სლაიდზე ვართ, უკან 
-//         return;// რომ არ გადავიდეს, ვაჩერებთ ფუნქციას
-//     }
-//     sliderIndex --;
-//     setSlide();//ფუნქციას ვიძახებთ თავიდან რადგან როცა სლაიდერ ინდექსი გახდება -1, უნდა შეიცვალოს ყველა დანარჩენი ინფორმაციაც (სურათის წყარო, სათაური, a tag-ის მისამართი)
-// })
-
-// arrowRigth.addEventListener('click', function(){//მარჯვენა ღილაკზე კლიკის შემთხვევში სლაიდერ ინდექსი რომელიც თავდაპირველად იყო 0, უნდა მოიმატოს 1-ით
-//     if (sliderIndex == data.length - 1){//თუ ბოლო სლაიდზე 
-//         return;//ვართ, წინ რომ აღარ გადავიდეს, ვაჩერებთ
-//     }
-//     sliderIndex ++;
-//     setSlide();//ფუნქციას ვიძახებთ თავიდან რადგან როცა სლაიდერ ინდექსი გახდება 1, უნდა შეიცვალოს ყველა დანარჩენი ინფორმაციაც (სურათის წყარო, სათაური, a tag-ის მისამართი)
-// });
 
 setSlide();

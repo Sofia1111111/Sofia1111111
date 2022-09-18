@@ -61,3 +61,50 @@ for(let item of accordion) {//ამ სამ დივს გადავუ�
     }) 
 }
 
+
+
+
+let filter = document.getElementById('filter');//ცვლადში ჩავაგდეთ input
+let result = document.getElementById('result');//ცვლადში ჩავაგდეთ ul-ი
+let listItems = [];//ცარიელი მასივის მქონე ცვლადი
+
+function getUsers() {
+    fetch('https://reqres.in/api/users?page=2',{//მზა სერვერიდან მოგვაქვს სახელები და გვარები fetch method-ით
+        method:'GET',
+    })
+    .then(function(response){
+        return response.json();//ვპარსავთ
+    }).then(function(responseData){
+        responseData.data.forEach(element => {
+            let li = document.createElement('li');//
+            li.textContent = `${element.first_name} ${element.last_name}`;
+
+            listItems.push(li);//ცარიელ მასივში ჩავაგდეთ თითოეული ლისტი
+
+            result.appendChild(li);
+        });
+    })
+    .catch(function(error){
+        console.log(error);
+    });
+}
+
+getUsers();
+
+//ამ ფუნქციის საშუალებით ჩვენ ვფილტრავთ
+function filterData(searchItem) {
+    listItems.forEach((item) => {//ამ მასივში item იქნება სათითაოდ თითოეული ლისტი
+        console.log(item);//სათითაოდ თითოეული ლისტი
+        
+        
+        if (item.innerText.toLowerCase().includes(searchItem.toLowerCase())){//თითოეული ლისტი და შემდეგ რასაც ჩავწერთ ინფუთში ყველაფერი გადავიყვანეთ პატარა ასოებზე და თუ ჩაწერილი ინფუთი მოიცავს ლისტში არსებულ ასოებს
+            item.classList.remove('hide');//უნდა გამოჩნდეს
+        }else{
+            item.classList.add('hide');//თუ არ მოიცავს უნდა დაჰაიდდეს
+        }
+    });
+}
+
+filter.addEventListener('input', function(event){//ამ ფუნქციას ვიძახებ input-ზე keydown-ის დროს ანუ ჩაწერის მომენტში.შევცვალეთ input-ით ეს ნიშნავს რომ ივენთი ხდება როცა ვმოქმედებთ ინპუტზე
+    filterData(event.target.value);//ვფილტრავთ, მომხმარებლის მიერ input-ში ჩაწერილ value-ს
+})
