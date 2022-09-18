@@ -106,25 +106,25 @@ function validationEmail() {
 let data = [
     {
         id:1,
-        imageUrl:'/assets/insta.png', 
+        imageUrl:'./assets/insta.png', 
         title: 'Instagram',
         url:'https://instagram.com',
     },
     {
         id:2,
-        imageUrl:'/assets/facebook.jpeg',
+        imageUrl:'./assets/facebook.jpeg',
         title:'Facebook',
         url:'https://facebook.com'
     },
     {
         id:3,
-        imageUrl:'/assets/twitter.png',
+        imageUrl:'./assets/twitter.png',
         title:'Twitter',
         url:'https://twitter.com'
     },
     {
         id:4,
-        imageUrl:'/assets/snapchat.png',
+        imageUrl:'./assets/snapchat.png',
         title:'Snapchat',
         url:'https://snapchat.com'
     },
